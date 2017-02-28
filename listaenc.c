@@ -138,3 +138,46 @@ void imprime(lista l){
     printf("] \n");
 }
 
+//separa lista a partir do n
+lista separa (lista *lst, int n){
+    lista aux = *lst, listanova;
+    int i;
+
+    if (n > 0 && n < tamanho(aux)){
+        for (i = 1; i < n; i++)
+            aux = aux->prox;
+        listanova = aux->prox;
+        listanova->prox = NULL;
+    }
+    return listanova;
+}
+
+//insere a lista ordenada
+int insereOrdenada(lista *lst, int dado){
+    tnolista *novo;
+    lista aux = *lst;
+
+    novo = (tnolista*) malloc(sizeof(tnolista));
+    if (novo == NULL) return 0;
+    novo->dado = dado;
+
+    //se estiver vazia
+    if (vazia(*lst)){
+        *lst = novo;
+        novo->prox = NULL;
+        return 1;
+    }
+    //se tiver elemento
+    while(aux != NULL){
+        if (aux->dado < dado){
+            aux->prox = novo;
+            novo->prox = NULL;
+            break;
+        } else {
+            novo->prox = aux;
+            *lst = novo;
+        }
+    aux=aux->prox;
+    }
+    return 1;
+}
