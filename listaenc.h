@@ -14,4 +14,7 @@ int inserir(lista *l, int posicao, int dado);
 int remover(lista *l, int posicao, int *dado);
 void imprime(lista l);
 
+lista separa (lista *lst, int n);
+int insereOrdenada(lista *lst, int dado);
+
 
